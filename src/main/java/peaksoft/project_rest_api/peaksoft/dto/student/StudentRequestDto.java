@@ -4,9 +4,9 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-import rest_tutorial.peaksoft.entity.StudyFormat;
-@FieldDefaults(level = AccessLevel.PRIVATE)
+import peaksoft.project_rest_api.peaksoft.entity.StudyFormat;
 
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter @Setter
 public class StudentRequestDto {
 
@@ -17,5 +17,6 @@ public class StudentRequestDto {
     String email;
 
     StudyFormat studyFormat;
+
     Long groupId;
 }

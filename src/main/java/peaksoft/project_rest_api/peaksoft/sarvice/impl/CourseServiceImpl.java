@@ -5,22 +5,20 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import rest_tutorial.peaksoft.dto.course.CourseRequestDto;
-import rest_tutorial.peaksoft.dto.course.CourseResponseDto;
-import rest_tutorial.peaksoft.entity.Company;
-import rest_tutorial.peaksoft.entity.Course;
-import rest_tutorial.peaksoft.exception.BadRequestException;
-import rest_tutorial.peaksoft.exception.CompanyNotFoundException;
-import rest_tutorial.peaksoft.exception.NotFoundException;
-import rest_tutorial.peaksoft.exception.repository.CompanyRepo;
-import rest_tutorial.peaksoft.exception.repository.CourseRepo;
-import rest_tutorial.peaksoft.response.Response;
-import rest_tutorial.peaksoft.sarvice.CourseService;
-
+import peaksoft.project_rest_api.peaksoft.dto.course.CourseRequestDto;
+import peaksoft.project_rest_api.peaksoft.dto.course.CourseResponseDto;
+import peaksoft.project_rest_api.peaksoft.entity.Company;
+import peaksoft.project_rest_api.peaksoft.entity.Course;
+import peaksoft.project_rest_api.peaksoft.exception.BadRequestException;
+import peaksoft.project_rest_api.peaksoft.exception.CompanyNotFoundException;
+import peaksoft.project_rest_api.peaksoft.exception.NotFoundException;
+import peaksoft.project_rest_api.peaksoft.exception.response.Response;
+import peaksoft.project_rest_api.peaksoft.repository.CompanyRepo;
+import peaksoft.project_rest_api.peaksoft.repository.CourseRepo;
+import peaksoft.project_rest_api.peaksoft.sarvice.CourseService;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
-
 import static org.springframework.http.HttpStatus.*;
 
 @Service
@@ -47,7 +45,6 @@ public class CourseServiceImpl implements CourseService {
                 .orElseThrow(() -> new NotFoundException(
                         String.format("company with id = %d does not exists", newCourse.getCompanyId())
                 ));
-
 
         course.setCompany(company);
 
@@ -91,6 +88,7 @@ public class CourseServiceImpl implements CourseService {
                             String.format("course with id = %s does not exists, you can't delete it", id)
                     );
                 });
+
         courseRepo.delete(course);
         log.info("Course with id = %s successfully delete in database" + id);
 
@@ -111,11 +109,12 @@ public class CourseServiceImpl implements CourseService {
 
         if (!Objects.equals(newCourseName, courseName1)) {
             course1.setCourseName(newCourseName);
-            log.info("Course with courseName {} = changed from currentName {} to {} "
-                    + id, courseName1, newCourseName);
+            log.info("Course with id {} = changed from currentName {} to {} ",
+                    id, courseName1, newCourseName);
         }
 
-        String format = String.format("Course with duration month changed successfully update" + id);
+        String format = String.format("Course with id = %d duration month changed successfully update", id);
+
         return Response.builder()
                 .httpStatus(RESET_CONTENT)
                 .massage(format)
@@ -124,8 +123,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public List<CourseResponseDto> getAllCourse() {
-        List<CourseResponseDto> allCourse = courseRepo.findAll()
+        return courseRepo.findAll()
                 .stream().map(course -> modelMapper.map(course, CourseResponseDto.class)).toList();
-        return allCourse;
     }
 }

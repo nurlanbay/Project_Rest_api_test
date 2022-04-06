@@ -34,5 +34,4 @@ public class Teacher {
     @OneToOne(cascade = ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
     Course course;
-
 }

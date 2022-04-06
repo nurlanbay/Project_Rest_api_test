@@ -1,8 +1,9 @@
 package peaksoft.project_rest_api.peaksoft.sarvice;
 
-import rest_tutorial.peaksoft.dto.group.GroupRequestDto;
-import rest_tutorial.peaksoft.dto.group.GroupResponseDto;
-import rest_tutorial.peaksoft.response.Response;
+
+import peaksoft.project_rest_api.peaksoft.dto.group.GroupRequestDto;
+import peaksoft.project_rest_api.peaksoft.dto.group.GroupResponseDto;
+import peaksoft.project_rest_api.peaksoft.exception.response.Response;
 
 import java.util.List;
 

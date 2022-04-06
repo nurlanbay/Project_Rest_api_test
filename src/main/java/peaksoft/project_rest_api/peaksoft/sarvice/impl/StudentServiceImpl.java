@@ -6,17 +6,17 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import rest_tutorial.peaksoft.dto.student.StudentRequestDto;
-import rest_tutorial.peaksoft.dto.student.StudentResponseDto;
-import rest_tutorial.peaksoft.entity.Group;
-import rest_tutorial.peaksoft.entity.Student;
-import rest_tutorial.peaksoft.exception.BadRequestException;
-import rest_tutorial.peaksoft.exception.NotFoundException;
-import rest_tutorial.peaksoft.exception.StudentNotFoundException;
-import rest_tutorial.peaksoft.exception.repository.GroupRepo;
-import rest_tutorial.peaksoft.exception.repository.StudentRepo;
-import rest_tutorial.peaksoft.response.Response;
-import rest_tutorial.peaksoft.sarvice.StudentService;
+import peaksoft.project_rest_api.peaksoft.dto.student.StudentRequestDto;
+import peaksoft.project_rest_api.peaksoft.dto.student.StudentResponseDto;
+import peaksoft.project_rest_api.peaksoft.entity.Group;
+import peaksoft.project_rest_api.peaksoft.entity.Student;
+import peaksoft.project_rest_api.peaksoft.exception.BadRequestException;
+import peaksoft.project_rest_api.peaksoft.exception.NotFoundException;
+import peaksoft.project_rest_api.peaksoft.exception.StudentNotFoundException;
+import peaksoft.project_rest_api.peaksoft.exception.response.Response;
+import peaksoft.project_rest_api.peaksoft.repository.GroupRepo;
+import peaksoft.project_rest_api.peaksoft.repository.StudentRepo;
+import peaksoft.project_rest_api.peaksoft.sarvice.StudentService;
 
 import java.util.List;
 import java.util.Objects;
@@ -67,9 +67,9 @@ public class StudentServiceImpl implements StudentService {
     public StudentResponseDto findByStudentId(Long id) {
         Student student = studentRepo.findById(id)
                 .orElseThrow(() -> {
-                    log.info("Student with id {} does not exists" + id);
+                    log.info("Student with id {} does not exists",  id);
                     throw new StudentNotFoundException(String.format(
-                            "Student with id %s does not exists" + id));
+                            "Student with id %s does not exists",  id));
                 });
         log.info("found student with id" + id);
         return modelMapper.map(student,StudentResponseDto.class);
@@ -79,7 +79,7 @@ public class StudentServiceImpl implements StudentService {
     public Response deleteByStudentId(Long id) {
         Student student = studentRepo.findById(id)
                 .orElseThrow(() -> {
-                    log.info("Student with id {} does not exists, you cant delete it" + id);
+                    log.info("Student with id {} does not exists, you cant delete it", id);
                     throw new BadRequestException(
                             String.format("Student with id %s does not exists, you cant delete it" + id)
                     );
@@ -87,7 +87,7 @@ public class StudentServiceImpl implements StudentService {
 
         studentRepo.delete(student);
 
-        log.info("Student with id {} has successfully delete from database" + id);
+        log.info("Student with id {} has successfully delete from database", id);
 
         return Response.builder()
                 .httpStatus(HttpStatus.OK)
@@ -105,7 +105,7 @@ public class StudentServiceImpl implements StudentService {
 
         if (!Objects.equals(currentName, newStudentName)) {
             student.setFirstName(newStudentName);
-            log.info("Student with name = {} changed from {} to {}" +
+            log.info("Student with name = {} changed from {} to {}",
                     id, currentName, newStudentName);
         }
 
@@ -114,7 +114,7 @@ public class StudentServiceImpl implements StudentService {
 
         if (!Objects.equals(currentLaseName, newStudentLastName)) {
             student.setLastName(newStudentLastName);
-            log.info("Student with name = {} changed from {} to {}" +
+            log.info("Student with name = {} changed from {} to {}",
                     id, currentLaseName, newStudentLastName);
         }
         String currentEmail = student.getEmail();
@@ -122,7 +122,7 @@ public class StudentServiceImpl implements StudentService {
 
         if (!Objects.equals(currentEmail, newEmail)) {
             student.setEmail(newEmail);
-            log.info("Student with name = {} changed from {} to {}" +
+            log.info("Student with name = {} changed from {} to {}",
                     id, currentEmail, newEmail);
         }
         String massage = String.format("Student with studentId = %s has successfully updated", id);
@@ -134,8 +134,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<StudentResponseDto> getAllStudent() {
-        List<StudentResponseDto> allStudent = studentRepo.findAll()
-                .stream().map(student -> modelMapper.map(student, StudentResponseDto.class)).toList();
-        return allStudent;
+        return studentRepo.findAll()
+                .stream()
+                .map(student -> modelMapper.map(student, StudentResponseDto.class))
+                .toList();
     }
 }

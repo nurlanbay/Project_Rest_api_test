@@ -1,13 +1,13 @@
-package peaksoft.project_rest_api.peaksoft.response;
+package peaksoft.project_rest_api.peaksoft.exception.response;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.http.HttpStatus;
 
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Response {
     private HttpStatus httpStatus;
     private String massage;

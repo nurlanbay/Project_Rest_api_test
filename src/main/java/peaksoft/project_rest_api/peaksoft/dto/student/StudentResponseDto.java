@@ -2,7 +2,7 @@ package peaksoft.project_rest_api.peaksoft.dto.student;
 
 import lombok.Getter;
 import lombok.Setter;
-import rest_tutorial.peaksoft.entity.StudyFormat;
+import peaksoft.project_rest_api.peaksoft.entity.StudyFormat;
 
 
 @Getter @Setter

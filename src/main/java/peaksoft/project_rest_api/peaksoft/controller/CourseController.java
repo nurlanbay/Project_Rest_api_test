@@ -3,17 +3,14 @@ package peaksoft.project_rest_api.peaksoft.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import rest_tutorial.peaksoft.dto.course.CourseRequestDto;
-import rest_tutorial.peaksoft.dto.course.CourseResponseDto;
-import rest_tutorial.peaksoft.exception.BadRequestException;
-import rest_tutorial.peaksoft.exception.CompanyNotFoundException;
-import rest_tutorial.peaksoft.response.Response;
-import rest_tutorial.peaksoft.sarvice.CourseService;
+import peaksoft.project_rest_api.peaksoft.dto.course.CourseRequestDto;
+import peaksoft.project_rest_api.peaksoft.dto.course.CourseResponseDto;
+import peaksoft.project_rest_api.peaksoft.exception.response.Response;
+import peaksoft.project_rest_api.peaksoft.sarvice.CourseService;
+
 
 import java.util.List;
 
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestController
 @RequestMapping("/api/courses")
@@ -48,21 +45,4 @@ public class CourseController {
         return courseService.updateById(courseId, course);
     }
 
-    @ExceptionHandler(CompanyNotFoundException.class)
-    @ResponseStatus(NOT_FOUND)
-    public Response handleNotFoundException(CompanyNotFoundException notFoundException) {
-        return Response.builder()
-                .httpStatus(NOT_FOUND)
-                .massage(notFoundException.getMessage())
-                .build();
-    }
-
-    @ExceptionHandler(BadRequestException.class)
-    @ResponseStatus(BAD_REQUEST)
-    public Response handleBadRequestException(BadRequestException badRequestException) {
-        return Response.builder()
-                .httpStatus(BAD_REQUEST)
-                .massage(badRequestException.getMessage())
-                .build();
-    }
 }

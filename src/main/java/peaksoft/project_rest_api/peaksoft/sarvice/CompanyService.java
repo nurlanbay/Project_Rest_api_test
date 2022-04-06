@@ -1,11 +1,11 @@
 package peaksoft.project_rest_api.peaksoft.sarvice;
-import rest_tutorial.peaksoft.dto.company.CompanyRequestDto;
-import rest_tutorial.peaksoft.dto.company.CompanyResponseDto;
-import rest_tutorial.peaksoft.response.Response;
+
+
+import peaksoft.project_rest_api.peaksoft.dto.company.CompanyRequestDto;
+import peaksoft.project_rest_api.peaksoft.dto.company.CompanyResponseDto;
+import peaksoft.project_rest_api.peaksoft.exception.response.Response;
 
 import java.util.List;
-
-
 
 public interface CompanyService {
 

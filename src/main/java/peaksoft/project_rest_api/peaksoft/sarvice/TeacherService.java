@@ -1,8 +1,9 @@
 package peaksoft.project_rest_api.peaksoft.sarvice;
 
-import rest_tutorial.peaksoft.dto.teacher.TeacherRequestDto;
-import rest_tutorial.peaksoft.dto.teacher.TeacherResponseDto;
-import rest_tutorial.peaksoft.response.Response;
+
+import peaksoft.project_rest_api.peaksoft.dto.teacher.TeacherRequestDto;
+import peaksoft.project_rest_api.peaksoft.dto.teacher.TeacherResponseDto;
+import peaksoft.project_rest_api.peaksoft.exception.response.Response;
 
 import java.util.List;
 

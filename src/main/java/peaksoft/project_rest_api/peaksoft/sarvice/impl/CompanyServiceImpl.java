@@ -5,18 +5,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import rest_tutorial.peaksoft.dto.company.CompanyRequestDto;
-import rest_tutorial.peaksoft.dto.company.CompanyResponseDto;
-import rest_tutorial.peaksoft.entity.Company;
-import rest_tutorial.peaksoft.exception.BadRequestException;
-import rest_tutorial.peaksoft.exception.CompanyNotFoundException;
-import rest_tutorial.peaksoft.exception.repository.CompanyRepo;
-import rest_tutorial.peaksoft.response.Response;
-import rest_tutorial.peaksoft.sarvice.CompanyService;
-
+import peaksoft.project_rest_api.peaksoft.dto.company.CompanyRequestDto;
+import peaksoft.project_rest_api.peaksoft.dto.company.CompanyResponseDto;
+import peaksoft.project_rest_api.peaksoft.entity.Company;
+import peaksoft.project_rest_api.peaksoft.exception.BadRequestException;
+import peaksoft.project_rest_api.peaksoft.exception.CompanyNotFoundException;
+import peaksoft.project_rest_api.peaksoft.repository.CompanyRepo;
+import peaksoft.project_rest_api.peaksoft.exception.response.Response;
+import peaksoft.project_rest_api.peaksoft.sarvice.CompanyService;
 import java.util.List;
 import java.util.Objects;
-
 import static org.springframework.http.HttpStatus.*;
 
 
